@@ -1,0 +1,110 @@
+[
+    {
+        "nombre": "Esteban",
+        "apellido": "Gomez",
+        "descripcion": "Node, Nest, Express",
+        "dni": 31394089,
+        "esDesarrollador": true,
+        "fechaNac": [1990, 11, 17],
+        "area": "Back End"
+    },
+    {
+        "nombre": "Alicia",
+        "apellido": "Pérez",
+        "descripcion": "UX, UxI, UX Writing",
+        "dni": 40395086,
+        "esDesarrollador": false,
+        "fechaNac": [1999, 0, 7],
+        "area": "Diseño"
+    },
+    {
+        "nombre": "Hernan",
+        "apellido": "Cantilo",
+        "descripcion": "Angular, Vue",
+        "dni": 22039489,
+        "esDesarrollador": true,
+        "fechaNac": [1980, 7, 22],
+        "area": "Front End"
+    },
+    {
+        "nombre": "Patricia",
+        "apellido": "Azzura",
+        "descripcion": "Liquidación de sueldos, contaduria",
+        "dni": 23849098,
+        "esDesarrollador": false,
+        "fechaNac": [1979, 5, 30],
+        "area": "RRHH"
+    },
+    {
+        "nombre": "Carlos",
+        "apellido": "Cantarutti",
+        "descripcion": "Java, C#, Node",
+        "dni": 20349768,
+        "esDesarrollador": true,
+        "fechaNac": [1970, 7, 8],
+        "area": "Back End"
+    },
+    {
+        "nombre": "Paula",
+        "apellido": "Paz",
+        "descripcion": "Vue, React",
+        "dni": 39837982,
+        "esDesarrollador": true,
+        "fechaNac": [1990, 5, 8],
+        "area": "Front End"
+    },
+    {
+        "nombre": "Celeste",
+        "apellido": "Linares",
+        "descripcion": "Angular, React",
+        "dni": 49276398,
+        "esDesarrollador": true,
+        "fechaNac": [2003, 3, 25],
+        "area": "Front End"
+    },
+    {
+        "nombre": "Leonardo",
+        "apellido": "Russo",
+        "descripcion": "PM, Agile Scrum",
+        "dni": 29489387,
+        "esDesarrollador": false,
+        "fechaNac": [1980, 6, 4],
+        "area": "Liderazgo"
+    },
+    {
+        "nombre": "Fernando",
+        "apellido": "Asencio",
+        "descripcion": "Ux, UxI, Diseño",
+        "dni": 31394089,
+        "esDesarrollador": false,
+        "fechaNac": [1987, 9, 27],
+        "area": "Diseño"
+    },
+    {
+        "nombre": "Leonela",
+        "apellido": "Pezuk",
+        "descripcion": "Recruiting, Onboarding",
+        "dni": 45839847,
+        "esDesarrollador": false,
+        "fechaNac": [2008, 2, 6],
+        "area": "RRHH"
+    },
+    {
+        "nombre": "Irina",
+        "apellido": "Szesvinac",
+        "descripcion": "Scrum Master, QA",
+        "dni": 24947983,
+        "esDesarrollador": false,
+        "fechaNac": [1977, 4, 8],
+        "area": "Liderazgo"
+    },
+    {
+        "nombre": "Facundo",
+        "apellido": "Torres",
+        "descripcion": "Docker, AWS, Kubernetes, Azure",
+        "dni": 31394089,
+        "esDesarrollador": true,
+        "fechaNac": [1993, 5, 17],
+        "area": "DevOps"
+    }
+]

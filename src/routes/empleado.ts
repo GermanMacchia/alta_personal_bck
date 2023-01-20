@@ -1,12 +1,13 @@
 import express from 'express'
+import { EmpleadoModel } from '../models'
 
 const router = express.Router()
 
-router.post( '/', async ( _req, _res ) => {
-
+router.get( '/', async ( _req, res ) => {
+    res.send( await EmpleadoModel.find( {} ) )
 } )
 
-router.get( '/', async ( _req, _res ) => {
+router.post( '/', async ( _req, _res ) => {
 
 } )
 

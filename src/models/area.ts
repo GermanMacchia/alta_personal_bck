@@ -1,6 +1,6 @@
 import { Prop, getModelForClass } from '@typegoose/typegoose'
 
-class Area {
+export class Area {
 
     @Prop( {
         required: true,

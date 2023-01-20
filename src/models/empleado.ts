@@ -1,5 +1,7 @@
-import { ObjectId } from "mongodb"
-import { Prop, getModelForClass } from '@typegoose/typegoose'
+import { Prop, Ref, getModelForClass } from '@typegoose/typegoose'
+import { Area } from './area'
+import { ObjectId } from 'mongodb'
+
 
 class Empleado {
 
@@ -44,9 +46,10 @@ class Empleado {
     apellido: string
 
     @Prop( {
-        type: ObjectId,
+        ref: () => Area,
+        type: () => ObjectId
     } )
-    area?: ObjectId
+    area?: Ref<Area>
 }
 
 const empleadoModel = getModelForClass( Empleado )
