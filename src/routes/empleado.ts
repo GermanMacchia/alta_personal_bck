@@ -1,23 +1,24 @@
 import express from 'express'
-import { getEmpleadoController, postEmpleadoController } from '../controllers/empleado'
+import { deleteEmpleadoController, getEmpleadoController, postEmpleadoController } from '../controllers/empleado'
+import { handleHttp } from '../utils/http.handler'
 
 const router = express.Router()
 
 router.get( '/', async ( _req, res ) => {
     try {
-        const areas = await getEmpleadoController()
-        res.status( 200 ).send( areas )
+        const empleados = await getEmpleadoController()
+        handleHttp( res, empleados, 200 )
     } catch ( error ) {
         res.status( 400 ).send( error )
     }
 } )
 
-router.post( '/', async ( _req, res ) => {
+router.post( '/', async ( req, res ) => {
     try {
-        const empleado = await postEmpleadoController()
-        res.status( 200 ).send( empleado )
-    } catch ( error ) {
-        res.status( 400 ).send( error )
+        const empleado = await postEmpleadoController( req.body )
+        handleHttp( res, empleado, 201 )
+    } catch ( error: any ) {
+        handleHttp( res, error.message, 400 )
     }
 } )
 
@@ -25,8 +26,13 @@ router.patch( '/', async ( _req, _res ) => {
 
 } )
 
-router.delete( '/', async ( _req, _res ) => {
-
+router.delete( '/:id', async ( req, res ) => {
+    try {
+        const data = await deleteEmpleadoController( req.params.id )
+        handleHttp( res, data, 202 )
+    } catch ( error: any ) {
+        handleHttp( res, error.message, 400 )
+    }
 } )
 
 export default router

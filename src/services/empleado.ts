@@ -1,5 +1,6 @@
 import { EmpleadoModel } from "../models"
 import { ObjectId } from 'mongodb'
+import { Empleado } from '../interfaces/empleado.interface'
 
 const getEmpleadoService = async () => {
     return await EmpleadoModel.find( {} )
@@ -10,16 +11,16 @@ const getEmpleadosByAreaService = async ( id: string ) => {
     return data
 }
 
-const postEmpleadoService = async () => {
-
+const postEmpleadoService = async ( empleado: Empleado ) => {
+    return await EmpleadoModel.create( empleado )
 }
 
 const patchEmpleadoService = async () => {
 
 }
 
-const deleteEmpleadoService = async () => {
-
+const deleteEmpleadoService = async ( id: string ) => {
+    return await EmpleadoModel.deleteOne( { _id: new ObjectId( id ) } )
 }
 
 export {

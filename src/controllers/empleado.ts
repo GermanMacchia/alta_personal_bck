@@ -1,4 +1,5 @@
-import { getEmpleadoService, getEmpleadosByAreaService } from "../services/empleado"
+import { deleteEmpleadoService, getEmpleadoService, getEmpleadosByAreaService, postEmpleadoService } from "../services/empleado"
+import { Empleado } from '../interfaces/empleado.interface'
 
 
 const getEmpleadosByAreaController = async ( id: string ) => {
@@ -9,16 +10,16 @@ const getEmpleadoController = async () => {
     return await getEmpleadoService()
 }
 
-const postEmpleadoController = async () => {
-
+const postEmpleadoController = async ( empleado: Empleado ) => {
+    return await postEmpleadoService( empleado )
 }
 
 const patchEmpleadoController = async () => {
 
 }
 
-const deleteEmpleadoController = async () => {
-
+const deleteEmpleadoController = async ( id: string ) => {
+    return await deleteEmpleadoService( id )
 }
 
 export {

@@ -28,8 +28,8 @@ router.patch( '/', async ( _req, _res ) => {
 
 router.delete( '/:id', async ( req, res ) => {
     try {
-        const area = await deleteAreaController( req.params.id )
-        handleHttp( res, area, 202 )
+        const data = await deleteAreaController( req.params.id )
+        handleHttp( res, data, 202 )
     } catch ( error: any ) {
         handleHttp( res, error.message, 400 )
     }
