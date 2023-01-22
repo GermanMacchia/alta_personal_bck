@@ -1,4 +1,9 @@
-import { getEmpleadoService } from "../services/empleado"
+import { getEmpleadoService, getEmpleadosByAreaService } from "../services/empleado"
+
+
+const getEmpleadosByAreaController = async ( id: string ) => {
+    return getEmpleadosByAreaService( id )
+}
 
 const getEmpleadoController = async () => {
     return await getEmpleadoService()
@@ -20,5 +25,6 @@ export {
     getEmpleadoController,
     postEmpleadoController,
     patchEmpleadoController,
-    deleteEmpleadoController
+    deleteEmpleadoController,
+    getEmpleadosByAreaController
 }

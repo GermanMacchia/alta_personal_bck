@@ -1,1 +1,2 @@
-export { default as handleHttp } from './http.handler'
+export { hasLengthError } from './hasLength.error'
+export { handleHttp } from './http.handler'

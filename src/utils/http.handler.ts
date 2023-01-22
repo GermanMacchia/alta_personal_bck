@@ -1,8 +1,6 @@
 import { Response } from "express"
 
-const handleHttp = ( res: Response, payload: any, status?: number ): void => {
+export const handleHttp = ( res: Response, payload: any, status?: number ): void => {
     if ( status ) res.status( status )
-    res.send( payload )
+    res.json( payload )
 }
-
-export default handleHttp

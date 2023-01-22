@@ -1,5 +1,10 @@
 import { deleteAreaService, getAreaByNameService, getAreaService, postAreaService } from "../services/area"
 import { Area } from '../interfaces'
+import { hasLengthError } from '../utils'
+import { getEmpleadosByAreaController } from "./empleado"
+
+const areaConEmpleadosError = 'El area tiene empleados asignados'
+const areaExistenteError = 'El nombre de area ya existe'
 
 const getAreaController = async () => {
     return await getAreaService()
@@ -11,7 +16,7 @@ const getAreaByNameController = async ( nombre: string ) => {
 
 const postAreaController = async ( nuevaArea: Area ) => {
     const data = await getAreaByNameController( nuevaArea.nombre )
-    if ( data.length ) throw new Error( "El nombre de area ya existe" )
+    hasLengthError( data, areaExistenteError )
     return await postAreaService( nuevaArea )
 }
 
@@ -19,12 +24,13 @@ const patchAreaController = async () => {
 
 }
 
+
 const deleteAreaController = async ( id: string ) => {
-    if ( !isNaN( +id ) ) {
-        throw new Error( 'Parametros deben ser numeros ObjectId' )
-    }
+    const data = await getEmpleadosByAreaController( id )
+    hasLengthError( data, areaConEmpleadosError )
     return await deleteAreaService( id )
 }
+
 
 export {
     getAreaController,

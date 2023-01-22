@@ -15,7 +15,6 @@ class Empleado {
     @Prop( {
         required: true,
         type: Number,
-        minlength: 8
     } )
     dni: number
 
