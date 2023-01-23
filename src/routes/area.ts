@@ -1,5 +1,5 @@
 import express from 'express'
-import { deleteAreaController, getAreaController, postAreaController } from '../controllers/area'
+import { deleteAreaController, getAreaController, patchAreaController, postAreaController } from '../controllers/area'
 import { handleHttp } from '../utils'
 
 const router = express.Router()
@@ -22,8 +22,13 @@ router.post( '/', async ( req, res ) => {
     }
 } )
 
-router.patch( '/', async ( _req, _res ) => {
-
+router.patch( '/:id', async ( req, res ) => {
+    try {
+        const data = await patchAreaController( req.params.id, req.body )
+        handleHttp( res, data, 202 )
+    } catch ( error: any ) {
+        handleHttp( res, error.message, 400 )
+    }
 } )
 
 router.delete( '/:id', async ( req, res ) => {

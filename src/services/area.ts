@@ -14,8 +14,8 @@ const postAreaService = async ( nuevaArea: Area ) => {
     return await AreaModel.create( nuevaArea )
 }
 
-const patchAreaService = async () => {
-
+const patchAreaService = async ( id: string, data: Area ) => {
+    return await AreaModel.findByIdAndUpdate( id, { ...data } )
 }
 
 const deleteAreaService = async ( id: string ) => {

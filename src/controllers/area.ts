@@ -1,4 +1,4 @@
-import { deleteAreaService, getAreaByNameService, getAreaService, postAreaService } from "../services/area"
+import { deleteAreaService, getAreaByNameService, getAreaService, patchAreaService, postAreaService } from "../services/area"
 import { Area } from '../interfaces'
 import { hasLengthError } from '../utils'
 import { getEmpleadosByAreaController } from "./empleado"
@@ -20,8 +20,8 @@ const postAreaController = async ( nuevaArea: Area ) => {
     return await postAreaService( nuevaArea )
 }
 
-const patchAreaController = async () => {
-
+const patchAreaController = async ( id: string, data: Area ) => {
+    return await patchAreaService( id, data )
 }
 
 

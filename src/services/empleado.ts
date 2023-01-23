@@ -7,16 +7,15 @@ const getEmpleadoService = async () => {
 }
 
 const getEmpleadosByAreaService = async ( id: string ) => {
-    const data = await EmpleadoModel.find( { area: { $eq: new ObjectId( id ) } } )
-    return data
+    return await EmpleadoModel.find( { area: { $eq: new ObjectId( id ) } } )
 }
 
 const postEmpleadoService = async ( empleado: Empleado ) => {
     return await EmpleadoModel.create( empleado )
 }
 
-const patchEmpleadoService = async () => {
-
+const patchEmpleadoService = async ( id: string, data: Empleado ) => {
+    return await EmpleadoModel.findByIdAndUpdate( id, { ...data } )
 }
 
 const deleteEmpleadoService = async ( id: string ) => {

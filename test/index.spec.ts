@@ -1,6 +1,7 @@
 
 import app from '../src/app'
 import request from 'supertest'
+import mongoose from "mongoose"
 
 describe( 'GET /test', () => {
 
@@ -16,3 +17,5 @@ describe( 'GET /test', () => {
     } )
 
 } )
+
+mongoose.connection.close()

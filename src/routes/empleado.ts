@@ -1,5 +1,5 @@
 import express from 'express'
-import { deleteEmpleadoController, getEmpleadoController, postEmpleadoController } from '../controllers/empleado'
+import { deleteEmpleadoController, getEmpleadoController, patchEmpleadoController, postEmpleadoController } from '../controllers/empleado'
 import { handleHttp } from '../utils/http.handler'
 
 const router = express.Router()
@@ -22,8 +22,13 @@ router.post( '/', async ( req, res ) => {
     }
 } )
 
-router.patch( '/', async ( _req, _res ) => {
-
+router.patch( '/:id', async ( req, res ) => {
+    try {
+        const data = await patchEmpleadoController( req.params.id, req.body )
+        handleHttp( res, data, 202 )
+    } catch ( error: any ) {
+        handleHttp( res, error.message, 400 )
+    }
 } )
 
 router.delete( '/:id', async ( req, res ) => {
