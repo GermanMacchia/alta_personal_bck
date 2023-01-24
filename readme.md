@@ -4,7 +4,7 @@
     <img style="height:220px; width: 330px"  src="https://webimages.mongodb.com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png" alt="imagen" />
 </div>
 
-<br/><br/><br/>
+<br><br><br>
 
 ---
 # Indice
@@ -17,11 +17,30 @@ C. [Documentación relevante](#documentación-relevante)
 
 D. [Documentación del proyecto](#documentación-del-proyecto)
 
-* [Técnologias](#tecnologias)
+* [Tecnologías](#tecnologías)
+
+* [Utils](#utils)
 
 * [Peticiones](#peticiones)
 
-<br/><br/><br/>
+    * [Test](#test)
+    
+    * [Seed](#seed)
+    
+    * [Empleado](#empleado)
+        * GET
+        * POST
+        * PATCH
+        * DELETE
+    
+    * [Area](#area)
+        * GET
+        * POST
+        * PATCH
+        * DELETE
+
+
+<br><br>
 
 ---
 
@@ -59,7 +78,7 @@ http://localhost:3000/test
 http://localhost:3000/seed
 ```
 
-<br/><br/><br/>
+<br><br><br>
 
 ---
 # Crear Proyecto desde inicio
@@ -119,7 +138,7 @@ npm i --save-dev @types/supertest
 }
 ```
 
-<br/><br/><br/>
+<br><br>
 
 ---
 # Documentación relevante
@@ -136,25 +155,26 @@ npm i --save-dev @types/supertest
 
 [jest](https://jestjs.io/)
 
-<br/><br/><br/>
+<br><br>
 
 ---
 # Documentación del proyecto
 
-<br/>
+<br><br>
 
 ## Tecnologías
+---
+---
+<br>
 
-<br/>
-
-**a. Typescript**
+**Typescript**
 
 
 Se trata de un superset de Javascript que nos permite establecer un tipado estricto en el contexto de desarrollo.
 Typescript nos facilita también comprender el código estableciendo referencias explícitas.
 
 
-**b. MongoDb**
+**MongoDb**
 
 
 Mongodb es un sistema de base de datos NoSQL, orientado a documentos y de código abierto.
@@ -162,7 +182,7 @@ Nos permite cierta flexibilidad para establecer los datos y conveniente utilizar
 realizar peticiones. Así como otros SQL, podemos establecer referencias a otros documentos y programar
 triggers para que se ejecuten de acuerdo a las necesidades.
 
-**c. NodeJs + Express + Jest + Supertest**
+**NodeJs + Express + Jest + Supertest**
 
 
 Express es una libreria conveniente para realizar backend sencillos y escalables. 
@@ -170,21 +190,71 @@ Nos otorga las funcionalidades más que necesarias para realizar el proyecto.
 Así también, contamos con Jest para realizar prubeas unitarias y Supertest para realizar pruebas de servicios http.
 
 
-<br/>
+<br><br>
+
+## Utils
+---
+---
+<br>
+
+**hasLength.error**<br>
+Devuelve un error al tener un array vacío<hr>
+
+
+**http.handler**<br>
+Permite establecer respuestas http en una sola linea<hr>
+
+<br><br>
 
 ## Peticiones
+---
+---
+<br>
 
-<br/>
+### **TEST**
 
-**Empleado**
+---
 
-a. GET - /api/empleado/
+A> **GET-**
 
-Retorna un array con todos los empleados
+*@params*: --<br>
+*@body*: --<br>
 
-b POST - /api/empleado/
+*resultado*: Retorna un string = 'API online'<br>
+*restricciones*: --<br><br>
 
-Permite ingresar un empleado al documento de MongoDb empleado requiere de un JSON en el cuerpo de la petición:
+---
+### **SEED**
+
+---
+
+A> **GET-**
+
+*@params*: --<br>
+*@body*: --<br>
+
+*resultado*: Popula la base de datos con los array de la carpeta SEED <br>
+*restricciones*: --<br><br>
+
+---
+### **EMPLEADO**
+
+---
+
+A> **GET-**  /api/empleado/
+
+*@params*: --<br>
+*@body*: --<br>
+
+*resultado*: Retorna un array de tipo Empleado[]<br>
+*restricciones*: --<br><br>
+
+---
+
+B> **POST-**  /api/empleado/
+
+*@params*: --<br>
+*@body*:<br>
 ```
 {
     "descripcion": "Node, Nest, Express",
@@ -196,17 +266,116 @@ Permite ingresar un empleado al documento de MongoDb empleado requiere de un JSO
     "area": "63cd4b8b4b48470ca73a7c18",
 }
 ```
+*resultado*:<br> 
+Permite ingresar un empleado al documento de MongoDb empleado.<br>
+Retorna JSON tipo Empleado con dato ingresado <br> <br> 
+*restricciones*: <br> 
+Todos datos del JSON son requeridos según el EmpleadoModel<br>
+El formato de la fecha debe ser válido<br>
+No debe existir un dni con el mismo número<br><br>
+
+---
 
 
-<br/>
+C> **PATCH-**  /api/empleado/:id
 
-## Utils
+*@params*:<br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br> 
+*@body*: <br>
+```
+{
+    "descripcion": "Node, Nest, Express",
+    "dni": 31394089,
+    "esDesarrollador": true,
+    "fechaNac": "1990-12-17T02:00:00.000Z",
+    "nombre": "esteban",
+    "apellido": "gomez",
+    "area": "63cd4b8b4b48470ca73a7c18",
+}
+```
+*resultado*: Retorna un JSON con los datos anteriores<br>
+*restricciones*: --<br><br>
 
-<br/>
+---
 
-**a.hasLength.error**
-Devuelve un error al tener un array vacío
+D> **DELETE-**  /api/empleado/:id
 
-**http.handler**
-Permite establecer respuestas http en una sola linea
+*@params*: <br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br> 
+*@body*: --<br>
+
+*resultado*: Retorna un resultado JSON con los siguientes datos
+```
+{
+  "acknowledged": true,
+  "deletedCount": 1
+}
+```
+*restricciones*: --<br><br>
+
+---
+
+### **AREA**
+
+---
+A> **GET-**  /api/area/
+
+*@params*: --<br>
+*@body*: --<br>
+
+*resultado*: Retorna un array de tipo Area[]<br>
+*restricciones*: --<br><br>
+
+---
+
+B> **POST-**  /api/area/
+
+*@params*: --<br>
+*@body*:<br>
+```
+{
+    "nombre": "Administración",
+}
+```
+*resultado*:<br> 
+Permite ingresar un area al documento de MongoDb area.<br>
+Retorna JSON tipo Area con dato ingresado <br> <br> 
+*restricciones*: <br> 
+Todos datos del JSON son requeridos segun el AreaModel<br>
+
+---
+
+
+C> **PATCH-**  /api/area/:id
+
+*@params*:<br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br> 
+*@body*: <br>
+```
+{
+    "nombre": "Recursos Humanos",
+}
+```
+*resultado*: Retorna un JSON con los datos anteriores<br>
+*restricciones*: --<br><br>
+
+---
+
+D> **DELETE-**  /api/area/:id
+
+*@params*: <br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br> 
+*@body*: --<br>
+
+*resultado*: Retorna un resultado JSON con los siguientes datos
+```
+{
+  "acknowledged": true,
+  "deletedCount": 1
+}
+```
+*restricciones*: --<br><br>
+
+---
+<br><br>
 
