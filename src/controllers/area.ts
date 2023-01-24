@@ -24,13 +24,11 @@ const patchAreaController = async ( id: string, data: Area ) => {
     return await patchAreaService( id, data )
 }
 
-
 const deleteAreaController = async ( id: string ) => {
     const data = await getEmpleadosByAreaController( id )
     hasLengthError( data, areaConEmpleadosError )
     return await deleteAreaService( id )
 }
-
 
 export {
     getAreaController,

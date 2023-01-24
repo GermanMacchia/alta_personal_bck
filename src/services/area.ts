@@ -22,8 +22,6 @@ const deleteAreaService = async ( id: string ) => {
     return await AreaModel.deleteOne( { _id: new ObjectId( id ) } )
 }
 
-
-
 export {
     getAreaService,
     postAreaService,

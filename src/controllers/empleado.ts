@@ -1,6 +1,8 @@
-import { deleteEmpleadoService, getEmpleadoService, getEmpleadosByAreaService, patchEmpleadoService, postEmpleadoService } from "../services/empleado"
+import { deleteEmpleadoService, getEmpleadoByDniService, getEmpleadoService, getEmpleadosByAreaService, patchEmpleadoService, postEmpleadoService } from "../services/empleado"
 import { Empleado } from '../interfaces/empleado.interface'
+import { hasLengthError } from '../utils/hasLength.error'
 
+const empleadoExistenteError = 'El dni de la persona ya existe'
 
 const getEmpleadosByAreaController = async ( id: string ) => {
     return getEmpleadosByAreaService( id )
@@ -10,7 +12,13 @@ const getEmpleadoController = async () => {
     return await getEmpleadoService()
 }
 
+const getEmpleadoByDni = async ( dni: number ) => {
+    return await getEmpleadoByDniService( dni )
+}
+
 const postEmpleadoController = async ( empleado: Empleado ) => {
+    const data = await getEmpleadoByDni( empleado.dni )
+    hasLengthError( data, empleadoExistenteError )
     return await postEmpleadoService( empleado )
 }
 
