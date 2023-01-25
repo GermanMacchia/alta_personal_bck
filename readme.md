@@ -342,7 +342,7 @@ Permite ingresar un area al documento de MongoDb area.<br>
 Retorna JSON tipo Area con dato ingresado <br> <br> 
 *restricciones*: <br> 
 Todos datos del JSON son requeridos segun el AreaModel<br>
-
+El nombre no debe existir en BD<br>
 ---
 
 

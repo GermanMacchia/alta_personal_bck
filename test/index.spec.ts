@@ -2,6 +2,7 @@
 import app from '../src/app'
 import request from 'supertest'
 import mongoose from "mongoose"
+import { server } from '../src/index'
 
 describe( 'GET /test', () => {
 
@@ -18,4 +19,7 @@ describe( 'GET /test', () => {
 
 } )
 
-mongoose.connection.close()
+afterAll( () => {
+    server.close()
+    mongoose.connection.close()
+} )
