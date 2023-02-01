@@ -12,12 +12,12 @@ const getEmpleadoController = async () => {
     return await getEmpleadoService()
 }
 
-const getEmpleadoByDni = async ( dni: number ) => {
+const getEmpleadoByDniController = async ( dni: number ) => {
     return await getEmpleadoByDniService( dni )
 }
 
 const postEmpleadoController = async ( empleado: Empleado ) => {
-    const data = await getEmpleadoByDni( empleado.dni )
+    const data = await getEmpleadoByDniController( empleado.dni )
     hasLengthError( data, empleadoExistenteError )
     return await postEmpleadoService( empleado )
 }
@@ -35,5 +35,6 @@ export {
     postEmpleadoController,
     patchEmpleadoController,
     deleteEmpleadoController,
-    getEmpleadosByAreaController
+    getEmpleadosByAreaController,
+    getEmpleadoByDniController
 }

@@ -1,6 +1,7 @@
-import { EmpleadoModel } from "../models"
 import { ObjectId } from 'mongodb'
 import { Empleado } from '../interfaces/empleado.interface'
+import { EmpleadoModel } from '../models'
+
 
 const getEmpleadoService = async () => {
     return await EmpleadoModel.find( {} )

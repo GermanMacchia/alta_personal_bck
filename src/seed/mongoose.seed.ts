@@ -1,12 +1,19 @@
 import empleados from './empleados.json'
 import areas from './areas.json'
+import { getAreaByNameController } from '../controllers/area'
+import { getEmpleadoByDniController } from '../controllers/empleado'
 import { AreaModel, EmpleadoModel } from '../models'
+
 
 const populateAreas = async () => {
     for await ( const area of areas ) {
-        AreaModel.create( {
-            nombre: area.nombre
-        } )
+        const response = await getAreaByNameController(area.nombre)
+        if(!response.length){
+            AreaModel.create( {
+                nombre: area.nombre
+            } )
+
+        }
     }
 }
 
@@ -14,16 +21,18 @@ const populateEmpleados = async () => {
     for await ( const empleado of empleados ) {
         const areaID = await AreaModel.findOne( { nombre: empleado.area } )
         const [ year, month, day ] = empleado.fechaNac
-
-        await EmpleadoModel.create( {
-            apellido: empleado.apellido,
-            descripcion: empleado.descripcion,
-            dni: empleado.dni,
-            esDesarrollador: empleado.esDesarrollador,
-            fechaNac: new Date( year, month, day ),
-            nombre: empleado.nombre,
-            area: areaID
-        } )
+        const response = await getEmpleadoByDniController(empleado.dni)
+        if(!response.length){
+            await EmpleadoModel.create( {
+                apellido: empleado.apellido,
+                descripcion: empleado.descripcion,
+                dni: empleado.dni,
+                esDesarrollador: empleado.esDesarrollador,
+                fechaNac: new Date( year, month, day ),
+                nombre: empleado.nombre,
+                area: areaID
+            } )
+        }
     }
 }
 

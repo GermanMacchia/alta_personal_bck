@@ -1,6 +1,7 @@
-import { AreaModel } from "../models"
 import { ObjectId } from 'mongodb'
 import { Area } from '../interfaces/area.interface'
+import { AreaModel } from '../models'
+
 
 const getAreaService = async () => {
     return await AreaModel.find( {} )

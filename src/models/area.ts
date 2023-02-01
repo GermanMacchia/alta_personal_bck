@@ -11,5 +11,5 @@ export class Area {
 
 }
 
-const areaModel = getModelForClass( Area )
-export default areaModel
+const AreaModel = getModelForClass( Area )
+export default AreaModel

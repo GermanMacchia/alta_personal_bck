@@ -1,6 +1,6 @@
 import { Prop, Ref, getModelForClass } from '@typegoose/typegoose'
-import { Area } from './area'
 import { ObjectId } from 'mongodb'
+import { Area } from './area'
 
 
 class Empleado {
@@ -51,5 +51,5 @@ class Empleado {
     area?: Ref<Area>
 }
 
-const empleadoModel = getModelForClass( Empleado )
-export default empleadoModel
+const EmpleadoModel = getModelForClass( Empleado )
+export default EmpleadoModel

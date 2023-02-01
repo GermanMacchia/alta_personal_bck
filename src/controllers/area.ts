@@ -34,5 +34,6 @@ export {
     getAreaController,
     postAreaController,
     patchAreaController,
-    deleteAreaController
+    deleteAreaController,
+    getAreaByNameController,
 }

@@ -4,7 +4,24 @@
     <img style="height:220px; width: 330px"  src="https://webimages.mongodb.com/_com_assets/cms/kuzt9r42or1fxvlq2-Meta_Generic.png" alt="imagen" />
 </div>
 
-<br><br><br>
+<br>
+
+Deploy:
+
+[https://germanmacchia.github.io/alta_personal_frt/](https://germanmacchia.github.io/alta_personal_frt/)
+<br>
+
+Repositorio Front End:
+
+[https://github.com/GermanMacchia/alta_personal_frt](https://github.com/GermanMacchia/alta_personal_frt)
+<br>
+
+Actualización del proyecto:
+
+[Alta empleados V3](https://github.com/GermanMacchia/alta-empleados-v3)
+<br>
+
+<br><br>
 
 ---
 # Indice
@@ -51,7 +68,7 @@ D. [Documentación del proyecto](#documentación-del-proyecto)
 ```
 npm install
 ```
-3. Establecer las variables de entorno __.env__ como lo especifica el archivo __env.confg.ts__
+3. Establecer las variables de entorno __.env__ como lo especifica el archivo __./src/env.config.ts__
 
 4. Levantar la base de datos con docker para trabajar de forma local (o establecer conexión a un servicio mongodb)
 ```
@@ -116,6 +133,7 @@ npm i ts-node-dev -D
 npm i dotenv
 npm i ts-jest supertest -D
 npm i mongoose
+npm i jsonwebtoken
 npm i @typegoose/typegoose
 ```
 6. Instalar los types para Typescript
@@ -233,8 +251,13 @@ A> **GET-**
 *@params*: --<br>
 *@body*: --<br>
 
-*resultado*: Popula la base de datos con los array de la carpeta SEED <br>
-*restricciones*: --<br><br>
+*resultado*: <br> Popula la base de datos con los array de la carpeta SEED <br>
+*restricciones*:<br> 
+Que el nombre del área no exista en la base de datos<br>
+Que el dni del empleado no exista en la base de datos<br>
+
+
+<br><br>
 
 ---
 ### **EMPLEADO**
