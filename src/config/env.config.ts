@@ -6,7 +6,10 @@ export const {
     DB_NAME,
     EMPLEADOS_COLECTION,
     AREA_COLECTION,
-    JWTSECRET
+    JWTSECRET,
+    CLOUDINARY_NAME,
+    CLOUDINARY_KEY,
+    CLOUDINARY_SECRET,
 } = process.env as {
     [ key: string ]: string
 }

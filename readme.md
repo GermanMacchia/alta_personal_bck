@@ -135,6 +135,7 @@ npm i ts-jest supertest -D
 npm i mongoose
 npm i jsonwebtoken
 npm i @typegoose/typegoose
+npm i cloudinary
 ```
 6. Instalar los types para Typescript
 ```
@@ -143,6 +144,7 @@ npm i --save-dev @types/cors
 npm i --save-dev @types/dotenv
 npm i --save-dev @types/jest
 npm i --save-dev @types/supertest
+npm i --save-dev @types/express-fileupload
 ```
 
 5. incluir en package.json
@@ -172,6 +174,8 @@ npm i --save-dev @types/supertest
 [MongoDB](https://www.mongodb.com/) 
 
 [jest](https://jestjs.io/)
+
+[Cloudinay](https://cloudinary.com/documentation/node_integration)
 
 <br><br>
 
@@ -206,6 +210,9 @@ triggers para que se ejecuten de acuerdo a las necesidades.
 Express es una libreria conveniente para realizar backend sencillos y escalables. 
 Nos otorga las funcionalidades más que necesarias para realizar el proyecto. 
 Así también, contamos con Jest para realizar prubeas unitarias y Supertest para realizar pruebas de servicios http.
+
+
+**Cloudinay**
 
 
 <br><br>

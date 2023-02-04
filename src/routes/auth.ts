@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post( '/signup', async ( req : Request, res: Response ) => {
     try {
-        await postNewUserController( req.body )
+        await postNewUserController( req.body)
         handleHttp( res, 'User Created', 201 )
     } catch ( error: any ) {
         handleHttp( res, error.message, 400 )

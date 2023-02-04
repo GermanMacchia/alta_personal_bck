@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb'
 import { Area } from './area'
 
 
-class Empleado {
+export class Empleado {
 
     @Prop( {
         required: true,

@@ -1,6 +1,7 @@
 import { deleteEmpleadoService, getEmpleadoByDniService, getEmpleadoService, getEmpleadosByAreaService, patchEmpleadoService, postEmpleadoService } from "../services/empleado"
 import { Empleado } from '../interfaces/empleado.interface'
 import { hasLengthError } from '../utils/hasLength.error'
+import { deleteAvatarController } from "./avatar"
 
 const empleadoExistenteError = 'El dni de la persona ya existe'
 
@@ -27,6 +28,7 @@ const patchEmpleadoController = async ( id: string, data: Empleado ) => {
 }
 
 const deleteEmpleadoController = async ( id: string ) => {
+    await deleteAvatarController(id)
     return await deleteEmpleadoService( id )
 }
 
