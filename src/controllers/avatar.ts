@@ -19,7 +19,7 @@ const postNewAvatarController = async ( req: Request ) => {
         newAvatar = {
             empleado_id: req.body._id,
             nombre: req.body.nombre,
-            url: image.url,
+            url: image.secure_url,
             public_id: image.public_id
         }
         return await postNewAvatarService(newAvatar)
