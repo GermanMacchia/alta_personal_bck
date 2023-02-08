@@ -9,7 +9,9 @@ cloudinary.config({
 
 const uploadImage = async (filePath: string) => {
   return await cloudinary.uploader.upload(filePath, {
-    folder: 'avatares'
+    folder: "avatares",
+    fetch_format: "auto",
+    quality: "auto:eco",
   })
 }
 

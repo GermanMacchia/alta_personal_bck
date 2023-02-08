@@ -11,9 +11,9 @@ const postNewAvatarController = async ( req: Request ) => {
     image: Image
 
     if ( req.files ) {
+        await deleteAvatarController(req.body._id)
         file = ( req.files.image as File)
         const path = file.tempFilePath
-
         image = await uploadImage( path )
 
         newAvatar = {
@@ -22,6 +22,7 @@ const postNewAvatarController = async ( req: Request ) => {
             url: image.secure_url,
             public_id: image.public_id
         }
+
         return await postNewAvatarService(newAvatar)
     }
     return new Error(errorDeImagen)
