@@ -9,5 +9,5 @@ export interface Image {
   url: string
   secure_url: string
   folder: string
-  original_filename:string
+  original_filename: string
 }

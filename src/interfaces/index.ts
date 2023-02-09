@@ -1,6 +1,6 @@
-export type { Empleado } from "./empleado.interface"
-export type { Area } from "./area.interface"
-export type { Image } from "./image.interface"
-export type { File } from "./file.interface"
-export type { Avatar } from "./avatar.interface"
-export type { User } from "./user.interface"
+export type { Empleado } from './empleado.interface'
+export type { Area } from './area.interface'
+export type { Image } from './image.interface'
+export type { File } from './file.interface'
+export type { Avatar } from './avatar.interface'
+export type { User } from './user.interface'

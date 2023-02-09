@@ -1,42 +1,49 @@
-import { deleteEmpleadoService, getEmpleadoByDniService, getEmpleadoService, getEmpleadosByAreaService, patchEmpleadoService, postEmpleadoService } from "../services/empleado"
+import {
+  deleteEmpleadoService,
+  getEmpleadoByDniService,
+  getEmpleadoService,
+  getEmpleadosByAreaService,
+  patchEmpleadoService,
+  postEmpleadoService,
+} from '../services/empleado'
 import { Empleado } from '../interfaces/empleado.interface'
 import { hasLengthError } from '../utils/hasLength.error'
-import { deleteAvatarController } from "./avatar"
+import { deleteAvatarController } from './avatar'
 
 const empleadoExistenteError = 'El dni de la persona ya existe'
 
-const getEmpleadosByAreaController = async ( id: string ) => {
-    return getEmpleadosByAreaService( id )
+const getEmpleadosByAreaController = async (id: string) => {
+  return getEmpleadosByAreaService(id)
 }
 
 const getEmpleadoController = async () => {
-    return await getEmpleadoService()
+  return await getEmpleadoService()
 }
 
-const getEmpleadoByDniController = async ( dni: number ) => {
-    return await getEmpleadoByDniService( dni )
+const getEmpleadoByDniController = async (dni: number) => {
+  return await getEmpleadoByDniService(dni)
 }
 
-const postEmpleadoController = async ( empleado: Empleado ) => {
-    const data = await getEmpleadoByDniController( empleado.dni )
-    hasLengthError( data, empleadoExistenteError )
-    return await postEmpleadoService( empleado )
+const postEmpleadoController = async (empleado: Empleado) => {
+  const data = await getEmpleadoByDniController(empleado.dni)
+  hasLengthError(data, empleadoExistenteError)
+  return await postEmpleadoService(empleado)
 }
 
-const patchEmpleadoController = async ( id: string, data: Empleado ) => {
-    return await patchEmpleadoService( id, data )
+const patchEmpleadoController = async (id: string, data: Empleado) => {
+  return await patchEmpleadoService(id, data)
 }
 
-const deleteEmpleadoController = async ( id: string ) => {
-    await deleteAvatarController(id)
-    return await deleteEmpleadoService( id )
+const deleteEmpleadoController = async (id: string) => {
+  await deleteAvatarController(id)
+  return await deleteEmpleadoService(id)
 }
 
 export {
-    getEmpleadoController,
-    postEmpleadoController,
-    patchEmpleadoController,
-    deleteEmpleadoController,
-    getEmpleadosByAreaController,
-    getEmpleadoByDniController
+  getEmpleadoController,
+  postEmpleadoController,
+  patchEmpleadoController,
+  deleteEmpleadoController,
+  getEmpleadosByAreaController,
+  getEmpleadoByDniController,
 }

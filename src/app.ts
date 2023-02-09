@@ -10,35 +10,37 @@ import authMiddleware from './authMiddleware'
 import fileUpload from 'express-fileupload'
 
 const app = express()
-app.use( express.json() )
-app.use( cors() )
+app.use(express.json())
+app.use(cors())
 connectDb()
 
 app.use('/', authMiddleware)
-app.use(fileUpload({
-    useTempFiles : true,
-    tempFileDir : './uploads'
-}));
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: './uploads',
+  })
+)
 
-app.use( '/api/empleado', empleados )
-app.use( '/api/area', area )
-app.use( '/api/avatar', avatar )
-app.use( '/auth', auth )
+app.use('/api/empleado', empleados)
+app.use('/api/area', area)
+app.use('/api/avatar', avatar)
+app.use('/auth', auth)
 
-app.use( '/info', express.static( 'public' ) )
+app.use('/info', express.static('public'))
 
-app.get( '/test', ( _req, res ) => {
-    res.send( 'API online' )
-} )
+app.get('/test', (_req, res) => {
+  res.send('API online')
+})
 
-app.get( '/seed', ( _req, res ) => {
-    try {
-        seedDB()
-        res.json( "DB seeded" )
-    } catch ( error ) {
-        res.status( 500 )
-        res.json( error )
-    }
-} )
+app.get('/seed', (_req, res) => {
+  try {
+    seedDB()
+    res.json('DB seeded')
+  } catch (error) {
+    res.status(500)
+    res.json(error)
+  }
+})
 
-export default app 
+export default app

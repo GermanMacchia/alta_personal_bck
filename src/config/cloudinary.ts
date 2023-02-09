@@ -1,25 +1,26 @@
-import { CLOUDINARY_KEY, CLOUDINARY_NAME, CLOUDINARY_SECRET } from "./env.config"
-const cloudinary = require('cloudinary').v2;
+import {
+  CLOUDINARY_KEY,
+  CLOUDINARY_NAME,
+  CLOUDINARY_SECRET,
+} from './env.config'
+const cloudinary = require('cloudinary').v2
 
-cloudinary.config({ 
-  cloud_name: CLOUDINARY_NAME, 
-  api_key: CLOUDINARY_KEY, 
-  api_secret: CLOUDINARY_SECRET 
-});
+cloudinary.config({
+  cloud_name: CLOUDINARY_NAME,
+  api_key: CLOUDINARY_KEY,
+  api_secret: CLOUDINARY_SECRET,
+})
 
 const uploadImage = async (filePath: string) => {
   return await cloudinary.uploader.upload(filePath, {
-    folder: "avatares",
-    fetch_format: "auto",
-    quality: "auto:eco",
+    folder: 'avatares',
+    fetch_format: 'auto',
+    quality: 'auto:eco',
   })
 }
 
-const deleteImage = async(id: string) => {
+const deleteImage = async (id: string) => {
   return await cloudinary.uploader.destroy(id)
 }
 
-export{
-  uploadImage,
-  deleteImage
-} 
+export { uploadImage, deleteImage }

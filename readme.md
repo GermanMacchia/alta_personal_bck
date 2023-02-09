@@ -24,6 +24,7 @@ Actualización del proyecto:
 <br><br>
 
 ---
+
 # Indice
 
 A. [Inicializar proyecto](#inicializar-proyecto)
@@ -34,63 +35,77 @@ C. [Documentación relevante](#documentación-relevante)
 
 D. [Documentación del proyecto](#documentación-del-proyecto)
 
-* [Tecnologías](#tecnologías)
+- [Tecnologías](#tecnologías)
 
-* [Utils](#utils)
+- [Utils](#utils)
 
-* [Peticiones](#peticiones)
+- [Peticiones](#peticiones)
 
-    * [Test](#test)
-    
-    * [Seed](#seed)
-    
-    * [Empleado](#empleado)
-        * GET
-        * POST
-        * PATCH
-        * DELETE
-    
-    * [Area](#area)
-        * GET
-        * POST
-        * PATCH
-        * DELETE
+  - [Test](#test)
 
+  - [Seed](#seed)
+
+  - [Empleado](#empleado)
+
+    - GET
+    - POST
+    - PATCH
+    - DELETE
+
+  - [Area](#area)
+    - GET
+    - POST
+    - PATCH
+    - DELETE
 
 <br><br>
 
 ---
 
 # Inicializar proyecto
+
 1. Clonar el repositorio
 
 2. Ejecutar
+
 ```
 npm install
 ```
-3. Establecer las variables de entorno __.env__ como lo especifica el archivo __./src/env.config.ts__
+
+3. Establecer las variables de entorno **.env** como lo especifica el archivo **./src/env.config.ts**
 
 4. Levantar la base de datos con docker para trabajar de forma local (o establecer conexión a un servicio mongodb)
+
 ```
 docker-compose up -d
 ```
+
 5. Iniciar el testing
+
 ```
 npm test
 ```
+
 6. Iniciar el proyecto en desarrollo
+
 ```
 npm run dev
 ```
+
 7. Iniciar en build de la carpeta ./dist
+
 ```
 npm build
 ```
+
 8. Testear peticion
+
 ```
 http://localhost:3000/test
 ```
+
 9. Popular base de datos
+
 ```
 http://localhost:3000/seed
 ```
@@ -98,14 +113,17 @@ http://localhost:3000/seed
 <br><br><br>
 
 ---
+
 # Crear Proyecto desde inicio
 
 1. Inicializar el proyecto
+
 ```
 npm init -y
 ```
 
 2. iniciar el tsconfig.json
+
 ```
 npm run tsc -- --init
 ```
@@ -114,17 +132,18 @@ npm run tsc -- --init
 
 ```
     "resolveJsonModule": true,
-    "outDir": "./dist",  
+    "outDir": "./dist",
     "strictPropertyInitialization": false,
-    "experimentalDecorators": true,  
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "removeComments": true,   
+    "removeComments": true,
     },
     "include": ["src/**/*"]
 
 ```
 
 4. Instalar los paquetes dependencia
+
 ```
 npm i express -E
 npm i cors
@@ -137,7 +156,9 @@ npm i jsonwebtoken
 npm i @typegoose/typegoose
 npm i cloudinary
 ```
+
 6. Instalar los types para Typescript
+
 ```
 npm i --save-dev @types/express
 npm i --save-dev @types/cors
@@ -148,6 +169,7 @@ npm i --save-dev @types/express-fileupload
 ```
 
 5. incluir en package.json
+
 ```
 {
     "scripts":{
@@ -161,6 +183,7 @@ npm i --save-dev @types/express-fileupload
 <br><br>
 
 ---
+
 # Documentación relevante
 
 [Typescript](https://www.typescriptlang.org/)
@@ -171,7 +194,7 @@ npm i --save-dev @types/express-fileupload
 
 [Express](https://expressjs.com/es/)
 
-[MongoDB](https://www.mongodb.com/) 
+[MongoDB](https://www.mongodb.com/)
 
 [jest](https://jestjs.io/)
 
@@ -180,24 +203,25 @@ npm i --save-dev @types/express-fileupload
 <br><br>
 
 ---
+
 # Documentación del proyecto
 
 <br><br>
 
 ## Tecnologías
+
 ---
+
 ---
+
 <br>
 
 **Typescript**
 
-
 Se trata de un superset de Javascript que nos permite establecer un tipado estricto en el contexto de desarrollo.
 Typescript nos facilita también comprender el código estableciendo referencias explícitas.
 
-
 **MongoDb**
-
 
 Mongodb es un sistema de base de datos NoSQL, orientado a documentos y de código abierto.
 Nos permite cierta flexibilidad para establecer los datos y conveniente utilizar javascript para
@@ -206,25 +230,24 @@ triggers para que se ejecuten de acuerdo a las necesidades.
 
 **NodeJs + Express + Jest + Supertest**
 
-
-Express es una libreria conveniente para realizar backend sencillos y escalables. 
-Nos otorga las funcionalidades más que necesarias para realizar el proyecto. 
+Express es una libreria conveniente para realizar backend sencillos y escalables.
+Nos otorga las funcionalidades más que necesarias para realizar el proyecto.
 Así también, contamos con Jest para realizar prubeas unitarias y Supertest para realizar pruebas de servicios http.
 
-
 **Cloudinay**
-
 
 <br><br>
 
 ## Utils
+
 ---
+
 ---
+
 <br>
 
 **hasLength.error**<br>
 Devuelve un error al tener un array vacío<hr>
-
 
 **http.handler**<br>
 Permite establecer respuestas http en una sola linea<hr>
@@ -232,8 +255,11 @@ Permite establecer respuestas http en una sola linea<hr>
 <br><br>
 
 ## Peticiones
+
 ---
+
 ---
+
 <br>
 
 ### **TEST**
@@ -242,49 +268,51 @@ Permite establecer respuestas http en una sola linea<hr>
 
 A> **GET-**
 
-*@params*: --<br>
-*@body*: --<br>
+_@params_: --<br>
+_@body_: --<br>
 
-*resultado*: Retorna un string = 'API online'<br>
-*restricciones*: --<br><br>
+_resultado_: Retorna un string = 'API online'<br>
+_restricciones_: --<br><br>
 
 ---
+
 ### **SEED**
 
 ---
 
 A> **GET-**
 
-*@params*: --<br>
-*@body*: --<br>
+_@params_: --<br>
+_@body_: --<br>
 
-*resultado*: <br> Popula la base de datos con los array de la carpeta SEED <br>
-*restricciones*:<br> 
+_resultado_: <br> Popula la base de datos con los array de la carpeta SEED <br>
+_restricciones_:<br>
 Que el nombre del área no exista en la base de datos<br>
 Que el dni del empleado no exista en la base de datos<br>
-
 
 <br><br>
 
 ---
+
 ### **EMPLEADO**
 
 ---
 
-A> **GET-**  /api/empleado/
+A> **GET-** /api/empleado/
 
-*@params*: --<br>
-*@body*: --<br>
+_@params_: --<br>
+_@body_: --<br>
 
-*resultado*: Retorna un array de tipo Empleado[]<br>
-*restricciones*: --<br><br>
+_resultado_: Retorna un array de tipo Empleado[]<br>
+_restricciones_: --<br><br>
 
 ---
 
-B> **POST-**  /api/empleado/
+B> **POST-** /api/empleado/
 
-*@params*: --<br>
-*@body*:<br>
+_@params_: --<br>
+_@body_:<br>
+
 ```
 {
     "descripcion": "Node, Nest, Express",
@@ -296,22 +324,23 @@ B> **POST-**  /api/empleado/
     "area": "63cd4b8b4b48470ca73a7c18",
 }
 ```
-*resultado*:<br> 
+
+_resultado_:<br>
 Permite ingresar un empleado al documento de MongoDb empleado.<br>
-Retorna JSON tipo Empleado con dato ingresado <br> <br> 
-*restricciones*: <br> 
+Retorna JSON tipo Empleado con dato ingresado <br> <br>
+_restricciones_: <br>
 Todos datos del JSON son requeridos según el EmpleadoModel<br>
 El formato de la fecha debe ser válido<br>
 No debe existir un dni con el mismo número<br><br>
 
 ---
 
+C> **PATCH-** /api/empleado/:id
 
-C> **PATCH-**  /api/empleado/:id
+_@params_:<br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br>
+_@body_: <br>
 
-*@params*:<br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br> 
-*@body*: <br>
 ```
 {
     "descripcion": "Node, Nest, Express",
@@ -323,90 +352,99 @@ Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <b
     "area": "63cd4b8b4b48470ca73a7c18",
 }
 ```
-*resultado*: Retorna un JSON con los datos anteriores<br>
-*restricciones*: --<br><br>
+
+_resultado_: Retorna un JSON con los datos anteriores<br>
+_restricciones_: --<br><br>
 
 ---
 
-D> **DELETE-**  /api/empleado/:id
+D> **DELETE-** /api/empleado/:id
 
-*@params*: <br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br> 
-*@body*: --<br>
+_@params_: <br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br>
+_@body_: --<br>
 
-*resultado*: Retorna un resultado JSON con los siguientes datos
+_resultado_: Retorna un resultado JSON con los siguientes datos
+
 ```
 {
   "acknowledged": true,
   "deletedCount": 1
 }
 ```
-*restricciones*: --<br><br>
+
+_restricciones_: --<br><br>
 
 ---
 
 ### **AREA**
 
 ---
-A> **GET-**  /api/area/
 
-*@params*: --<br>
-*@body*: --<br>
+A> **GET-** /api/area/
 
-*resultado*: Retorna un array de tipo Area[]<br>
-*restricciones*: --<br><br>
+_@params_: --<br>
+_@body_: --<br>
+
+_resultado_: Retorna un array de tipo Area[]<br>
+_restricciones_: --<br><br>
 
 ---
 
-B> **POST-**  /api/area/
+B> **POST-** /api/area/
 
-*@params*: --<br>
-*@body*:<br>
+_@params_: --<br>
+_@body_:<br>
+
 ```
 {
     "nombre": "Administración",
 }
 ```
-*resultado*:<br> 
+
+_resultado_:<br>
 Permite ingresar un area al documento de MongoDb area.<br>
-Retorna JSON tipo Area con dato ingresado <br> <br> 
-*restricciones*: <br> 
+Retorna JSON tipo Area con dato ingresado <br> <br>
+_restricciones_: <br>
 Todos datos del JSON son requeridos segun el AreaModel<br>
 El nombre no debe existir en BD<br>
 
 ---
 
+C> **PATCH-** /api/area/:id
 
-C> **PATCH-**  /api/area/:id
+_@params_:<br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br>
+_@body_: <br>
 
-*@params*:<br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br> 
-*@body*: <br>
 ```
 {
     "nombre": "Recursos Humanos",
 }
 ```
-*resultado*: Retorna un JSON con los datos anteriores<br>
-*restricciones*: --<br><br>
+
+_resultado_: Retorna un JSON con los datos anteriores<br>
+_restricciones_: --<br><br>
 
 ---
 
-D> **DELETE-**  /api/area/:id
+D> **DELETE-** /api/area/:id
 
-*@params*: <br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br> 
-*@body*: --<br>
+_@params_: <br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br>
+_@body_: --<br>
 
-*resultado*: Retorna un resultado JSON con los siguientes datos
+_resultado_: Retorna un resultado JSON con los siguientes datos
+
 ```
 {
   "acknowledged": true,
   "deletedCount": 1
 }
 ```
-*restricciones*: --<br><br>
+
+_restricciones_: --<br><br>
 
 ---
-<br><br>
 
+<br><br>

@@ -1,6 +1,5 @@
-
 export interface File {
-    name: string
-    size: number
-    tempFilePath: string
+  name: string
+  size: number
+  tempFilePath: string
 }
