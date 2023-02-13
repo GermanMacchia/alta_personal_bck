@@ -35,6 +35,8 @@ C. [Documentación relevante](#documentación-relevante)
 
 D. [Documentación del proyecto](#documentación-del-proyecto)
 
+- [DLR-DER](#dlr-der)
+
 - [Tecnologías](#tecnologías)
 
 - [Utils](#utils)
@@ -43,7 +45,11 @@ D. [Documentación del proyecto](#documentación-del-proyecto)
 
   - [Test](#test)
 
+    - GET
+
   - [Seed](#seed)
+
+    - GET
 
   - [Empleado](#empleado)
 
@@ -53,16 +59,17 @@ D. [Documentación del proyecto](#documentación-del-proyecto)
     - DELETE
 
   - [Area](#area)
+
     - GET
     - POST
     - PATCH
     - DELETE
 
-- [Avatar](#avatar)
-  - GET
-  - POST
-  - PATCH
-  - DELETE
+  - [Avatar](#avatar)
+    - GET
+    - GET/:id
+    - POST
+    - DELETE
 
 <br><br>
 
@@ -232,6 +239,16 @@ npm i --save-dev @types/jsonwebtoken
 
 <br><br>
 
+## DLR-DER
+
+---
+
+---
+
+  <img style="height:420px; width: 530px"  src="./public/DLR - DER.jpg" alt="dlr-der" />
+
+<br><br>
+
 ## Tecnologías
 
 ---
@@ -244,6 +261,7 @@ npm i --save-dev @types/jsonwebtoken
 
 Se trata de un superset de Javascript que nos permite establecer un tipado estricto en el contexto de desarrollo.
 Typescript nos facilita también comprender el código estableciendo referencias explícitas.
+<br><br>
 
 **MongoDb**
 
@@ -251,26 +269,28 @@ Mongodb es un sistema de base de datos NoSQL, orientado a documentos y de códig
 Nos permite cierta flexibilidad para establecer los datos y conveniente utilizar javascript para
 realizar peticiones. Así como otros SQL, podemos establecer referencias a otros documentos y programar
 triggers para que se ejecuten de acuerdo a las necesidades.
+<br><br>
 
 **NodeJs + Express + Jest + Supertest**
 
 Express es una libreria conveniente para realizar backend sencillos y escalables.
 Nos otorga las funcionalidades más que necesarias para realizar el proyecto.
 Así también, contamos con Jest para realizar prubeas unitarias y Supertest para realizar pruebas de servicios http.
+<br><br>
 
 **Cloudinary**
 
 Se trata de un SaaS que nos permite gestionar y persistir imagenes y videos en la nube.<br>
-También proporciona varias herramientas para transformar, minificar y cambiar el formato de nuestros archivos.
+También proporciona varias herramientas para transformar, minificar y cambiar el formato de nuestros archivos.<br><br>
 
 **JWT**
 
 Se trata de una herramienta estandart para otorgar privilegios de información de manera segura y efectiva.<br>
-Elabora cadenas compuestas por tres partes que serializa una base de números y letas.
+Elabora cadenas compuestas por tres partes que serializa una base de números y letas.<br><br>
 
 **Bcrypt**
 
-Nos permite encriptar las contraseñas de nuestros usuarios de manera que no puedan ser vistas en la base de datos.<br>
+Nos permite encriptar las contraseñas de nuestros usuarios de manera que no puedan ser vistas en la base de datos.<br><br>
 
 **Express fileUpload**
 
@@ -286,15 +306,23 @@ Nos permite crear un path temporal para el archivo de imagen que recibimos<br>
 
 <br>
 
+---
+
 **hasLength.error**<br>
-Devuelve un error al tener un array vacío<hr>
+Devuelve un error al tener un array vacío
+
+---
 
 **http.handler**<br>
-Permite establecer respuestas http<hr>
+Permite establecer respuestas http
+
+---
 
 <br><br>
 
 ## Peticiones
+
+---
 
 ---
 
@@ -304,9 +332,9 @@ El token asignado a través del signIn se deberá incluir en headers para las pe
 Authorization:'eyJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiX2lkIjoiNjNkZDA2MWM1ODU2MTAxYTU3YzgwMzFlIiwiaWF0IjoxNjc1NDI5NDE2LCJleHAiOjE2NzU1MTU4MTZ9.6UfRONgcftHloEL1zRT8gRFnaf7WfP33RI8VnUiGD0U'
 ```
 
----
-
 <br>
+
+---
 
 ### **TEST**
 
