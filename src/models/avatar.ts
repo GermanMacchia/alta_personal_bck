@@ -7,7 +7,7 @@ export class Avatar {
     ref: () => Empleado,
     type: () => ObjectId,
   })
-  empleado_id?: Ref<Empleado>
+  empleado_id: Ref<Empleado>
 
   @Prop({
     required: true,

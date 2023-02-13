@@ -58,6 +58,12 @@ D. [Documentación del proyecto](#documentación-del-proyecto)
     - PATCH
     - DELETE
 
+- [Avatar](#avatar)
+  - GET
+  - POST
+  - PATCH
+  - DELETE
+
 <br><br>
 
 ---
@@ -80,31 +86,43 @@ npm install
 docker-compose up -d
 ```
 
-5. Iniciar el testing
+5. Establecer variables de entorno
+
+   a. PORT => Puerto <br>
+   b. DB_CONN_STRING => Direccion de coneccion mongodb <br>
+   c. DB_NAME => Nombre de documento <br>
+   d. EMPLEADOS_COLECTION => Nombre de coleccion empleado <br>
+   e. AREA_COLECTION => Nombre de coleccion área <br>
+   f. JWTSECRET => Palabra secreta para signature JWT <br>
+   g. CLOUDINARY_NAME => Clave de cloudinary<br>
+   h. CLOUDINARY_KEY => Clave de cloudinary <br>
+   i. CLOUDINARY_SECRET => Clave de cloudinary <br>
+
+6. Iniciar el testing
 
 ```
 npm test
 ```
 
-6. Iniciar el proyecto en desarrollo
+7. Iniciar el proyecto en desarrollo
 
 ```
 npm run dev
 ```
 
-7. Iniciar en build de la carpeta ./dist
+8. Iniciar en build de la carpeta ./dist
 
 ```
 npm build
 ```
 
-8. Testear peticion
+9. Testear peticion
 
 ```
 http://localhost:3000/test
 ```
 
-9. Popular base de datos
+10. Popular base de datos
 
 ```
 http://localhost:3000/seed
@@ -153,7 +171,9 @@ npm i dotenv
 npm i ts-jest supertest -D
 npm i mongoose
 npm i jsonwebtoken
+npm i bcrypt
 npm i @typegoose/typegoose
+npm i express-fileupload
 npm i cloudinary
 ```
 
@@ -166,6 +186,8 @@ npm i --save-dev @types/dotenv
 npm i --save-dev @types/jest
 npm i --save-dev @types/supertest
 npm i --save-dev @types/express-fileupload
+npm i --save-dev @types/bcrypt
+npm i --save-dev @types/jsonwebtoken
 ```
 
 5. incluir en package.json
@@ -198,7 +220,9 @@ npm i --save-dev @types/express-fileupload
 
 [jest](https://jestjs.io/)
 
-[Cloudinay](https://cloudinary.com/documentation/node_integration)
+[Cloudinary](https://cloudinary.com/documentation/node_integration)
+
+[JWT](https://jwt.io/)
 
 <br><br>
 
@@ -234,7 +258,23 @@ Express es una libreria conveniente para realizar backend sencillos y escalables
 Nos otorga las funcionalidades más que necesarias para realizar el proyecto.
 Así también, contamos con Jest para realizar prubeas unitarias y Supertest para realizar pruebas de servicios http.
 
-**Cloudinay**
+**Cloudinary**
+
+Se trata de un SaaS que nos permite gestionar y persistir imagenes y videos en la nube.<br>
+También proporciona varias herramientas para transformar, minificar y cambiar el formato de nuestros archivos.
+
+**JWT**
+
+Se trata de una herramienta estandart para otorgar privilegios de información de manera segura y efectiva.<br>
+Elabora cadenas compuestas por tres partes que serializa una base de números y letas.
+
+**Bcrypt**
+
+Nos permite encriptar las contraseñas de nuestros usuarios de manera que no puedan ser vistas en la base de datos.<br>
+
+**Express fileUpload**
+
+Nos permite crear un path temporal para el archivo de imagen que recibimos<br>
 
 <br><br>
 
@@ -250,13 +290,19 @@ Así también, contamos con Jest para realizar prubeas unitarias y Supertest par
 Devuelve un error al tener un array vacío<hr>
 
 **http.handler**<br>
-Permite establecer respuestas http en una sola linea<hr>
+Permite establecer respuestas http<hr>
 
 <br><br>
 
 ## Peticiones
 
 ---
+
+El token asignado a través del signIn se deberá incluir en headers para las peticiones que lo requieran:
+
+```
+Authorization:'eyJlbWFpbCI6ImFkbWluQG1haWwuY29tIiwiX2lkIjoiNjNkZDA2MWM1ODU2MTAxYTU3YzgwMzFlIiwiaWF0IjoxNjc1NDI5NDE2LCJleHAiOjE2NzU1MTU4MTZ9.6UfRONgcftHloEL1zRT8gRFnaf7WfP33RI8VnUiGD0U'
+```
 
 ---
 
@@ -271,7 +317,7 @@ A> **GET-**
 _@params_: --<br>
 _@body_: --<br>
 
-_resultado_: Retorna un string = 'API online'<br>
+_resultado_: <br>Retorna un string = 'API online'.<br><br>
 _restricciones_: --<br><br>
 
 ---
@@ -285,12 +331,10 @@ A> **GET-**
 _@params_: --<br>
 _@body_: --<br>
 
-_resultado_: <br> Popula la base de datos con los array de la carpeta SEED <br>
+_resultado_: <br> Popula la base de datos con los array de la carpeta SEED.<br><br>
 _restricciones_:<br>
-Que el nombre del área no exista en la base de datos<br>
-Que el dni del empleado no exista en la base de datos<br>
-
-<br><br>
+Que el nombre del área no exista en la base de datos.<br>
+Que el dni del empleado no exista en la base de datos.<br><br>
 
 ---
 
@@ -303,8 +347,9 @@ A> **GET-** /api/empleado/
 _@params_: --<br>
 _@body_: --<br>
 
-_resultado_: Retorna un array de tipo Empleado[]<br>
-_restricciones_: --<br><br>
+_resultado_: <br>Retorna un array de tipo Empleado[].<br><br>
+_restricciones_: <br>
+El solicitante debe tener un token asignado.<br><br>
 
 ---
 
@@ -314,66 +359,77 @@ _@params_: --<br>
 _@body_:<br>
 
 ```
+
 {
-    "descripcion": "Node, Nest, Express",
-    "dni": 31394089,
-    "esDesarrollador": true,
-    "fechaNac": "1990-12-17T02:00:00.000Z",
-    "nombre": "esteban",
-    "apellido": "gomez",
-    "area": "63cd4b8b4b48470ca73a7c18",
+"descripcion": "Node, Nest, Express",
+"dni": 31394089,
+"esDesarrollador": true,
+"fechaNac": "1990-12-17T02:00:00.000Z",
+"nombre": "esteban",
+"apellido": "gomez",
+"area": "63cd4b8b4b48470ca73a7c18",
 }
+
 ```
 
 _resultado_:<br>
 Permite ingresar un empleado al documento de MongoDb empleado.<br>
-Retorna JSON tipo Empleado con dato ingresado <br> <br>
+Retorna JSON tipo Empleado con dato ingresado.<br><br>
 _restricciones_: <br>
-Todos datos del JSON son requeridos según el EmpleadoModel<br>
-El formato de la fecha debe ser válido<br>
-No debe existir un dni con el mismo número<br><br>
+Todos datos del JSON son requeridos según el EmpleadoModel.<br>
+El formato de la fecha debe ser válido.<br>
+No debe existir un dni con el mismo número.<br>
+El solicitante debe tener un token asignado.<br><br>
 
 ---
 
 C> **PATCH-** /api/empleado/:id
 
 _@params_:<br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59".<br> <br>
 _@body_: <br>
 
 ```
+
 {
-    "descripcion": "Node, Nest, Express",
-    "dni": 31394089,
-    "esDesarrollador": true,
-    "fechaNac": "1990-12-17T02:00:00.000Z",
-    "nombre": "esteban",
-    "apellido": "gomez",
-    "area": "63cd4b8b4b48470ca73a7c18",
+"descripcion": "Node, Nest, Express",
+"dni": 31394089,
+"esDesarrollador": true,
+"fechaNac": "1990-12-17T02:00:00.000Z",
+"nombre": "esteban",
+"apellido": "gomez",
+"area": "63cd4b8b4b48470ca73a7c18",
 }
+
 ```
 
-_resultado_: Retorna un JSON con los datos anteriores<br>
-_restricciones_: --<br><br>
+_resultado_: <br>Retorna un JSON con los datos anteriores.<br><br>
+_restricciones_: <br>
+El Id debe ser de un empleado existente.<br>
+El solicitante debe tener un token asignado.<br><br>
 
 ---
 
 D> **DELETE-** /api/empleado/:id
 
 _@params_: <br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59".<br><br>
 _@body_: --<br>
 
-_resultado_: Retorna un resultado JSON con los siguientes datos
+_resultado_: <br>Retorna un resultado JSON con los siguientes datos:
 
 ```
+
 {
-  "acknowledged": true,
-  "deletedCount": 1
+"acknowledged": true,
+"deletedCount": 1
 }
+
 ```
 
-_restricciones_: --<br><br>
+_restricciones_: <br>
+El Id debe ser de un empleado existente.<br>
+El solicitante debe tener un token asignado.<br><br>
 
 ---
 
@@ -386,7 +442,7 @@ A> **GET-** /api/area/
 _@params_: --<br>
 _@body_: --<br>
 
-_resultado_: Retorna un array de tipo Area[]<br>
+_resultado_: <br>Retorna un array de tipo Area[].<br><br>
 _restricciones_: --<br><br>
 
 ---
@@ -397,54 +453,148 @@ _@params_: --<br>
 _@body_:<br>
 
 ```
+
 {
-    "nombre": "Administración",
+"nombre": "Administración",
 }
+
 ```
 
 _resultado_:<br>
 Permite ingresar un area al documento de MongoDb area.<br>
-Retorna JSON tipo Area con dato ingresado <br> <br>
+Retorna JSON tipo Area con dato ingresado.<br><br>
 _restricciones_: <br>
-Todos datos del JSON son requeridos segun el AreaModel<br>
-El nombre no debe existir en BD<br>
+Todos datos del JSON son requeridos segun el AreaModel.<br>
+El nombre no debe existir en BD.<br>
+El solicitante debe tener un token asignado.<br><br>
 
 ---
 
 C> **PATCH-** /api/area/:id
 
 _@params_:<br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br> <br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59".<br> <br>
 _@body_: <br>
 
 ```
+
 {
-    "nombre": "Recursos Humanos",
+"nombre": "Recursos Humanos",
 }
+
 ```
 
-_resultado_: Retorna un JSON con los datos anteriores<br>
-_restricciones_: --<br><br>
+_resultado_:<br> Retorna un JSON con los datos anteriores.<br><br>
+_restricciones_: <br>
+El Id debe ser de un área existente.<br>
+El solicitante debe tener un token asignado.<br><br>
 
 ---
 
 D> **DELETE-** /api/area/:id
 
 _@params_: <br>
-Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59"<br><br>
+Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59".<br><br>
 _@body_: --<br>
 
-_resultado_: Retorna un resultado JSON con los siguientes datos
+_resultado_: <br>Retorna un resultado JSON con los siguientes datos:
 
 ```
+
 {
-  "acknowledged": true,
-  "deletedCount": 1
+"acknowledged": true,
+"deletedCount": 1
 }
+
 ```
 
-_restricciones_: --<br><br>
+_restricciones_: <br>
+El Id debe ser de un área existente.<br>
+El solicitante debe tener un token asignado.<br><br>
 
 ---
 
-<br><br>
+### **AVATAR**
+
+---
+
+A> **GET-** /api/avatar/
+
+_@params_: --<br>
+_@body_: --<br>
+
+_resultado_: <br>Retonorna una array de tipo Avatar[].<br><br>
+
+_restricciones_: <br>
+El solicitante debe tener un token asignado.<br><br>
+
+---
+
+A> **GET-** /api/avatar/:id
+
+_@params_: Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59".<br><br>
+_@body_: --<br>
+
+_resultado_: <br>
+
+```
+
+{
+"\_id": {
+"$oid": "63e465e35eb9b3d55cb2a9de"
+  },
+  "empleado_id": {
+    "$oid": "63d042456fe4c922b5db7252"
+},
+"url": "https://res.cloudinary.com/dbmxs9ttb/image/upload/v1675912674/avatares/tmp-10-1675912673836_rajjpe.jpg",
+"public_id": "avatares/tmp-10-1675912673836_rajjpe",
+"nombre": "julian estecochea",
+"\_\_v": 0
+}
+
+```
+
+_restricciones_: <br>
+El Id debe ser de un empleado existente.<br>
+El solicitante debe tener un token asignado.<br><br>
+
+---
+
+B> **POST-** /api/avatar/
+
+_@params_: --<br>
+_@body_: <br>Recibe un multipart/form-data con un archivo de imagen:
+
+```
+{
+formData.append('image', file, file.name)
+formData.append('\_id', empleado.\_id as string)
+formData.append('nombre', `${empleado.nombre} ${empleado.apellido}`)
+}
+
+```
+
+_resultado_: <br>
+Solo existe una imagen por empleado, por lo tanto se borra de la base de datos y de cloudinary el anterior asociado al empleado_id.<br>
+Devuelve un string: 'Imagen Recibida'.<br>
+
+_restricciones_: <br>
+Todos datos del FormData son requeridos.<br>
+El solicitante debe tener un token asignado.<br><br>
+
+---
+
+C> **DELETE-** /api/avatar/:id
+
+_@params_: <br> Requiere id de tipo ObjectId segun mongodb ej. "63d0348ded35d69d110a9b59".<br><br>
+_@body_: --<br>
+
+_resultado_:<br>
+Elimina el archivo del documento mongodb avatar correspondiente al id del empleado.<br>
+Elimina el archivo de imagen correspondiente al public_id en cloudinary.<br>
+Responde con 'avatar eliminado' cuando la petición es exitosa.<br>
+
+_restricciones_: <br>
+El solicitante debe tener un token asignado.<br><br>
+
+---
