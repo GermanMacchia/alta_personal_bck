@@ -104,6 +104,8 @@ docker-compose up -d
    g. CLOUDINARY_NAME => Clave de cloudinary<br>
    h. CLOUDINARY_KEY => Clave de cloudinary <br>
    i. CLOUDINARY_SECRET => Clave de cloudinary <br>
+   j. FB_PRIVATE_KEY => Clave admin firebase <br>
+   k. FB_CLIENT_MAIL => Clave admin firebase <br>
 
 6. Iniciar el testing
 
@@ -182,6 +184,7 @@ npm i bcrypt
 npm i @typegoose/typegoose
 npm i express-fileupload
 npm i cloudinary
+npm i firebase-admin
 ```
 
 6. Instalar los types para Typescript
@@ -230,6 +233,8 @@ npm i --save-dev @types/jsonwebtoken
 [Cloudinary](https://cloudinary.com/documentation/node_integration)
 
 [JWT](https://jwt.io/)
+
+[Firebase](https://firebase.google.com/docs?hl=es-419)
 
 <br><br>
 
@@ -287,6 +292,11 @@ También proporciona varias herramientas para transformar, minificar y cambiar e
 
 Se trata de una herramienta estandart para otorgar privilegios de información de manera segura y efectiva.<br>
 Elabora cadenas compuestas por tres partes que serializa una base de números y letas.<br><br>
+
+**Firebase Admin**
+
+Extención para administrar Firebase desde la API<br>
+Nos permite comprobar las claves de nuestros usuarios.<br><br>
 
 **Bcrypt**
 

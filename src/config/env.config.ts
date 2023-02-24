@@ -10,6 +10,8 @@ export const {
   CLOUDINARY_NAME,
   CLOUDINARY_KEY,
   CLOUDINARY_SECRET,
+  FB_PRIVATE_KEY,
+  FB_CLIENT_MAIL,
 } = process.env as {
   [key: string]: string
 }
